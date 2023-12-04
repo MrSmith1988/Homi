@@ -6,20 +6,20 @@ arrows = Image('00000:'
                '09090:'
                '00000:')
 
-selfID = 'Hasini'
+selfID = 'Hasini'           #change to own name
 IDNo = 0
-ID = ['Brishti', 'Hasini', 'Pratham', 'Jaide', 'Harry', 'Corrine', 'Aditya', 'Rupert', 'Ron', 'Pei', 'Kingston']
+ID = ['Brishti', 'Hasini', 'Pratham', 'Jaide', 'Harry', 'Corrine', 'Aditya', 'Kingston', 'Rupert', 'Ron', 'Pei']
 radio.on()
 while True:
   display.show(arrows)
   for n in ID:
-    if button_b.is_pressed():
+    if button_b.is_pressed():           #scrolls right
       IDNo = IDNo + 1
       display.scroll(ID[IDNo])
-    elif button_a.is_pressed():
+    elif button_a.is_pressed():         #scrolls left
       IDNo = IDNo - 1
       display.scroll(ID[IDNo])
-    elif accelerometer.was_gesture('shake'):
+    elif accelerometer.was_gesture('shake'):            #starts the sending function and animation
       display.scroll(ID[IDNo])
       radio.send(ID[IDNo])
       display.show(Image.HEART)
@@ -27,11 +27,11 @@ while True:
       display.show(Image.ARROW_E)
       sleep(500)
       display.clear()
-      sleep(500)
+      sleep(250)
       display.show(Image.ARROW_E)
       sleep(500)
       display.clear()
-      sleep(500)
+      sleep(250)
       display.show(Image.ARROW_E)
       sleep(500)
       display.clear()
