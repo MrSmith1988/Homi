@@ -36,10 +36,6 @@ while True:
       sleep(500)
       display.clear()
 
-
   message = radio.receive()
   if message == selfID:
     display.show(Image.HEART)
-    
-
-      
