@@ -13,37 +13,44 @@ radio.on()
 while True:
     display.show(arrows)
     if button_b.was_pressed():           #scrolls right
-      IDNo = IDNo + 1
-      display.scroll(ID[IDNo], delay=70)
+        if IDNo == len(ID)-1:
+            IDNo = 0
+        else:
+            IDNo = IDNo + 1
+        display.scroll(ID[IDNo], delay=70)
     elif button_a.was_pressed():         #scrolls left
-      IDNo = IDNo - 1
-      display.scroll(ID[IDNo], delay=70)
+        if IDNo == 0:
+            IDNo = len(ID)-1
+        else:
+            IDNo = IDNo - 1
+        display.scroll(ID[IDNo], delay=70)
     elif accelerometer.was_gesture('shake'):            #starts the sending function and animation
-      display.scroll(ID[IDNo], delay=70)
-      radio.send(f"{ID[IDNo]} {selfID}")
-      display.show(Image.HEART)
-      sleep(500)
-      display.show(Image.ARROW_E)
-      sleep(500)
-      display.clear()
-      sleep(250)
-      display.show(Image.ARROW_E)
-      sleep(500)
-      display.clear()
-      sleep(250)
-      display.show(Image.ARROW_E)
-      sleep(500)
-      display.clear()
+        display.scroll(ID[IDNo], delay=70)
+        radio.send(str({ID[IDNo]})+" "+str({selfID}))
+        display.show(Image.HEART)
+        sleep(500)
+        display.show(Image.ARROW_E)
+        sleep(500)
+        display.clear()
+        sleep(250)
+        display.show(Image.ARROW_E)
+        sleep(500)
+        display.clear()
+        sleep(250)
+        display.show(Image.ARROW_E)
+        sleep(500)
+        display.clear()
 
     message = radio.receive()
-    message = message.split()
-    if message[0] == selfID:
-        display.show(Image.HEART)
-        sleep(50)
-        display.clear()
-        sleep(50)
-        display.show(Image.HEART)
-        sleep(100)
-        display.clear()
-        sleep(50)
-        display.scroll(message[1])
+    if message != None:
+        message = message.split()
+        if str(message[0]) == selfID:
+            display.show(Image.HEART)
+            sleep(50)
+            display.clear()
+            sleep(50)
+            display.show(Image.HEART)
+            sleep(100)
+            display.clear()
+            sleep(50)
+            display.scroll(message[1])
