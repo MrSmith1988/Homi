@@ -6,22 +6,21 @@ arrows = Image('00000:'
                '09090:'
                '00000:')
 
-selfID = 'Hasini'           #change to own name
+selfID = 'Smith'           #change to own name
 IDNo = 0
-ID = ['Brishti', 'Hasini', 'Pratham', 'Jaide', 'Harry', 'Corrine', 'Aditya', 'Kingston', 'Rupert', 'Ron', 'Pei']
+ID = ['Brishti', 'Hasini', 'Pratham', 'Jaide', 'Harry', 'Corrine', 'Aditya', 'Kingston', 'Rupert', 'Ron', 'Pei', 'Smith']
 radio.on()
 while True:
-  display.show(arrows)
-  for n in ID:
-    if button_b.is_pressed():           #scrolls right
+    display.show(arrows)
+    if button_b.was_pressed():           #scrolls right
       IDNo = IDNo + 1
-      display.scroll(ID[IDNo])
-    elif button_a.is_pressed():         #scrolls left
+      display.scroll(ID[IDNo], delay=70)
+    elif button_a.was_pressed():         #scrolls left
       IDNo = IDNo - 1
-      display.scroll(ID[IDNo])
+      display.scroll(ID[IDNo], delay=70)
     elif accelerometer.was_gesture('shake'):            #starts the sending function and animation
-      display.scroll(ID[IDNo])
-      radio.send(ID[IDNo])
+      display.scroll(ID[IDNo], delay=70)
+      radio.send(f"{ID[IDNo]} {selfID}")
       display.show(Image.HEART)
       sleep(500)
       display.show(Image.ARROW_E)
@@ -36,6 +35,15 @@ while True:
       sleep(500)
       display.clear()
 
-  message = radio.receive()
-  if message == selfID:
-    display.show(Image.HEART)
+    message = radio.receive()
+    message = message.split()
+    if message[0] == selfID:
+        display.show(Image.HEART)
+        sleep(50)
+        display.clear()
+        sleep(50)
+        display.show(Image.HEART)
+        sleep(100)
+        display.clear()
+        sleep(50)
+        display.scroll(message[1])
