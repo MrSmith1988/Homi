@@ -17,16 +17,16 @@ while True:
             IDNo = 0
         else:
             IDNo = IDNo + 1
-        display.scroll(ID[IDNo], delay=70)
+        display.scroll(ID[IDNo], delay=50)
     elif button_a.was_pressed():         #scrolls left
         if IDNo == 0:
             IDNo = len(ID)-1
         else:
             IDNo = IDNo - 1
-        display.scroll(ID[IDNo], delay=70)
+        display.scroll(ID[IDNo], delay=50)
     elif accelerometer.was_gesture('shake'):            #starts the sending function and animation
-        display.scroll(ID[IDNo], delay=70)
-        radio.send(str({ID[IDNo]})+" "+str({selfID}))
+        display.scroll(ID[IDNo], delay=50)
+        radio.send(ID[IDNo]+" "+selfID)
         display.show(Image.HEART)
         sleep(500)
         display.show(Image.ARROW_E)
@@ -44,13 +44,13 @@ while True:
     message = radio.receive()
     if message != None:
         message = message.split()
-        if str(message[0]) == selfID:
+        if message[0] == selfID:
             display.show(Image.HEART)
-            sleep(50)
+            sleep(200)
             display.clear()
-            sleep(50)
+            sleep(200)
             display.show(Image.HEART)
-            sleep(100)
+            sleep(400)
             display.clear()
-            sleep(50)
-            display.scroll(message[1])
+            sleep(200)
+            display.scroll(message[1], delay=50)
