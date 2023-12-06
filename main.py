@@ -6,9 +6,9 @@ arrows = Image('00000:'
                '09090:'
                '00000:')
 
-selfID = 'Smith'           #change to own name
+selfID = 'Brishti'           #change to own name
 IDNo = 0
-ID = ['Brishti', 'Hasini', 'Pratham', 'Jaide', 'Harry', 'Corrine', 'Aditya', 'Kingston', 'Rupert', 'Ron', 'Pei', 'Smith']
+ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide', 'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
 radio.on()
 while True:
     display.show(arrows)
@@ -45,6 +45,10 @@ while True:
     if message != None:
         message = message.split()
         if message[0] == selfID:
+            display.show(Image.HEART)
+            sleep(200)
+            display.clear()
+            sleep(200)
             display.show(Image.HEART)
             sleep(200)
             display.clear()
