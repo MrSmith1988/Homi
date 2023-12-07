@@ -1,14 +1,16 @@
 from microbit import *
 import radio
+from functions import *
 arrows = Image('00000:'
                '09090:'
                '90009:'
                '09090:'
                '00000:')
 
-selfID = 'Smith'           #change to own name
+selfID = 'Aditya'           #change to own name
 IDNo = 0
 ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide', 'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
+
 radio.on()
 while True:
     display.show(arrows)
@@ -45,28 +47,5 @@ while True:
     if message != None:
         message = message.split()
         if message[0] == selfID:
-            display.show(Image.HEART)
-            sleep(200)
-            display.clear()
-            sleep(200)
-            display.show(Image.HEART)
-            sleep(200)
-            display.clear()
-            sleep(200)
-            display.show(Image.HEART)
-            sleep(400)
-            display.clear()
-            sleep(200)
-            display.show(Image.HEART)
-            sleep(200)
-            display.clear()
-            sleep(200)
-            display.show(Image.HEART)
-            sleep(200)
-            display.clear()
-            sleep(200)
-            display.show(Image.HEART)
-            sleep(400)
-            display.clear()
-            sleep(200)
+            recieveBlink(Image.HEART)
             display.scroll(message[1], delay=50)
