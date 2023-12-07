@@ -24,7 +24,7 @@ while True:
         else:
             IDNo = IDNo - 1
         display.scroll(ID[IDNo], delay=50)
-    elif accelerometer.was_gesture('shake'):            #starts the sending function and animation
+    elif accelerometer.get_x() > 2010:            #starts the sending function and animation
         display.scroll(ID[IDNo], delay=50)
         radio.send(ID[IDNo]+" "+selfID)
         display.show(Image.HEART)
