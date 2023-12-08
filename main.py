@@ -9,12 +9,19 @@ ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide', 'Kingston', 'P
 radio.on()
 while True:
     display.show(arrows)
-    if button_b.was_pressed():           #scrolls right
-        IDNum = move(ID, IDNum, 'right')
-        display.scroll(ID[IDNum], delay=50)
-    elif button_a.was_pressed():         #scrolls left
+    button = buttonPress()
+    if button[0] and button[1]:
+        #display user name
+        pass
+
+    elif button[0]:         #scrolls left
         IDNum = move(ID, IDNum, 'left')
         display.scroll(ID[IDNum], delay=50)
+    
+    elif button[1]:           #scrolls right
+        IDNum = move(ID, IDNum, 'right')
+        display.scroll(ID[IDNum], delay=50)
+            
     elif accelerometer.get_x() > 2010:            #starts the sending function and animation
         display.scroll(ID[IDNum], delay=50)
         sending(ID[IDNum], selfID, Image.HEART)
