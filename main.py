@@ -7,21 +7,16 @@ IDNum = 0
 ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide',
       'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
 
-for i in range(len(ID)):
-    if selfID == ID[i]:
-        display.scroll('Hi '+ID[IDNo], delay=70)
-        IDNo = 11
-        break
-    else:
-        IDNo = IDNo+1
+while not True in buttons_pressed():
+    sleep(1)
+display.scroll('HELLO, '+selfID, delay=50)
 
 radio.on()
 while True:
     display.show(arrows)
-    button = check_both_buttons()
+    button = buttons_pressed()
     if button[0] and button[1]:
-        # display user name
-        pass
+        display.scroll("YOU ARE " + selfID, delay=50)
 
     elif button[0]:  # scrolls left
         IDNum = move(ID, IDNum, 'left')

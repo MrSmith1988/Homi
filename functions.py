@@ -1,23 +1,23 @@
 from microbit import *
 import radio
 
-arrows = Image('00000:'
-               '09090:'
-               '90009:'
-               '09090:'
-               '00000:')
+arrows = Image ('00000:'
+                '09090:'
+                '90009:'
+                '09090:'
+                '00000:')
 
-smile = Image('09090:'
-              '09090:'
-              '00000:'
-              '90009:'
-              '09990:')
+smile = Image  ('09090:' 
+                '09090:' 
+                '00000:' 
+                '90009:' 
+                '09990:')
 
-frown = Image('09090:'
-              '09090:'
-              '00000:'
-              '09990:'
-              '90009:')
+frown = Image  ('09090:' 
+                '09090:' 
+                '00000:' 
+                '09990:' 
+                '90009:')
 
 stoneface = Image('00000:'
                   '99099:'
@@ -25,22 +25,22 @@ stoneface = Image('00000:'
                   '09990:'
                   '00000:')
 
-owo = Image('00000:'
-            '09090:'
-            '00000:'
-            '90909:'
-            '09090:')
+owo = Image    ('00000:' 
+                '09090:' 
+                '00000:' 
+                '90909:' 
+                '09090:')
 
-waterpistol = Image('00000:'
-                    '99999:'
-                    '99999:'
-                    '00599:'
+waterpistol = Image('00000:' 
+                    '99999:' 
+                    '99999:' 
+                    '00599:' 
                     '00099:')
 
-arrowup = Image('00900:'
-                '09990:'
-                '99999:'
-                '09990:'
+arrowup = Image('00900:' 
+                '09990:' 
+                '99999:' 
+                '09990:' 
                 '09990:')
 
 arrowdown = Image('09990:'
@@ -81,23 +81,14 @@ def sending(recipient, sender, image):
     flashFlash(Image.ARROW_E, 1)
 
 
-def check_both_buttons() -> tuple:
-    """
-    Returns a tuple of the states of both button_a and button_b, respectively
+def buttons_pressed() -> tuple:
+    buttons_value = (button_a.was_pressed(), button_b.was_pressed())
 
-    Waits 200 milliseconds before determining the result of whether or not the user has inputted a chord
-    """
-
-    def get_buttons():
-        """Return the state of button_a and button_b as a tuple, respectively"""
-
-        return (button_a.was_pressed(), button_b.was_pressed())
-
-    buttons_value = get_buttons()
-
-    if True in buttons_value:
+    if buttons_value[0]:
         sleep(200)
+        buttons_value = (True, button_b.was_pressed())
+    elif buttons_value[1]:
+        sleep(200)
+        buttons_value = (button_a.was_pressed(), True)
 
-        new_buttons_value = get_buttons()
-
-    return (buttons_value[0] and new_buttons_value[0], buttons_value[1] and new_buttons_value[1])
+    return buttons_value
