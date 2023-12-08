@@ -6,7 +6,13 @@ selfID = 'Smith'           #change to own name
 IDNum = 0
 ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide', 'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
 
-#startup code
+for i in range(len(ID)):
+    if selfID == ID[i]:
+        display.scroll('Hi '+ID[IDNo], delay=70)
+        IDNo = 11
+        break
+    else:
+        IDNo = IDNo+1
 
 radio.on()
 while True:
