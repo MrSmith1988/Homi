@@ -6,6 +6,8 @@ selfID = 'Smith'           #change to own name
 IDNum = 0
 ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide', 'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
 
+#startup code
+
 radio.on()
 while True:
     display.show(arrows)
