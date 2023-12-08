@@ -7,6 +7,7 @@ arrows = Image('00000:'
                '09090:'
                '00000:')
 
+
 def flashFlash(image, numTimes):
     def oneFlash(image, time):
         display.show(image)
@@ -17,6 +18,7 @@ def flashFlash(image, numTimes):
         oneFlash(image, 200)
         oneFlash(image, 200)
         oneFlash(image, 400)
+
 
 def move(choiceList, choiceNum, direction):
     if direction == 'right':
@@ -29,8 +31,26 @@ def move(choiceList, choiceNum, direction):
             return len(choiceList)-1
         else:
             return choiceNum - 1
-        
+
+
 def sending(recipient, sender, image):
     radio.send(recipient+" "+sender)
     flashFlash(image, 1)
     flashFlash(Image.ARROW_E, 1)
+
+
+def buttons_pressed() -> tuple:
+    """
+    Returns a tuple of the states of both button_a and button_b, respectively
+
+    Waits the standard of 500 milliseconds before determining the result of whether or not the user has inputted a chord
+    """
+
+    buttons_value = (button_a.is_pressed(), button_b.is_pressed())
+
+    if True in buttons_value:
+        sleep(500)
+
+        buttons_value = (button_a.is_pressed(), button_b.is_pressed())
+
+    return buttons_value
