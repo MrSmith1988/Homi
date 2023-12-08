@@ -2,9 +2,10 @@ from microbit import *
 import radio
 from functions import *
 
-selfID = 'Smith'           #change to own name
+selfID = 'Smith'  # change to own name
 IDNum = 0
-ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide', 'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
+ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide',
+      'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
 
 for i in range(len(ID)):
     if selfID == ID[i]:
@@ -17,20 +18,20 @@ for i in range(len(ID)):
 radio.on()
 while True:
     display.show(arrows)
-    button = buttonPress()
+    button = check_both_buttons()
     if button[0] and button[1]:
-        #display user name
+        # display user name
         pass
 
-    elif button[0]:         #scrolls left
+    elif button[0]:  # scrolls left
         IDNum = move(ID, IDNum, 'left')
         display.scroll(ID[IDNum], delay=50)
-    
-    elif button[1]:           #scrolls right
+
+    elif button[1]:  # scrolls right
         IDNum = move(ID, IDNum, 'right')
         display.scroll(ID[IDNum], delay=50)
-            
-    elif accelerometer.get_x() > 2010:            #starts the sending function and animation
+
+    elif accelerometer.get_x() > 2010:  # starts the sending function and animation
         display.scroll(ID[IDNum], delay=50)
         sending(ID[IDNum], selfID, Image.HEART)
 
