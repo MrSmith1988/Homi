@@ -1,35 +1,55 @@
 from microbit import *
 import radio
 from functions import *
-
-selfID = 'Smith'  # change to own name
+from images import *
+selfID = ''      #No need to change
 IDNum = 0
-ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide',
-      'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
+ID = ['Aditya', 'Brishti', 'Corrine', 'Harry', 'Hasini', 'Jaide', 'Kingston', 'Pei', 'Pratham', 'Ron', 'Rupert', 'Smith']
+#messages = [Image.HEART, smile, frown, stoneface, owo, waterPistol, arrowup, arrowdown]
+#messageNum = 0
+#clear button buffers
+button_a.was_pressed()
+button_b.was_pressed()
 
-while not True in buttons_pressed():
-    sleep(1)
-display.scroll('HELLO, '+selfID, delay=50)
+# Startup code
+while not button_a.was_pressed():
+    for i in frames:
+        display.show(i)
+        sleep(60)
+    display.show(frames[-1])
+    sleep(200)
 
+#choose your name, and remove it from the list
+display.scroll('WHO ARE YOU?', delay=50)
+display.scroll(ID[0], delay=50)
+button_b.was_pressed()
+selfID = chooseName(ID)
+ID.remove(selfID)
+
+display.scroll('CHOOSE YOUR HOMI:', delay=50)
+display.scroll(ID[0], delay=50)
+#start radio and start main program loop
 radio.on()
 while True:
     display.show(arrows)
-    button = buttons_pressed()
-    if button[0] and button[1]:
+    action = menu(ID, IDNum)
+    if action == 'back':
         display.scroll("YOU ARE " + selfID, delay=50)
-
-    elif button[0]:  # scrolls left
-        IDNum = move(ID, IDNum, 'left')
+    elif action == 'confirm':
         display.scroll(ID[IDNum], delay=50)
-
-    elif button[1]:  # scrolls right
-        IDNum = move(ID, IDNum, 'right')
+        #messageNum = chooseMessage(messages)
+        #if messageNum == 'back':
+        #    continue
+        for i in range(1000):
+            if accelerometer.is_gesture('shake'):
+                sending(ID[IDNum], selfID, Image.HEART)
+                break
+            sleep(1)
+    elif action == 'none':
+        pass
+    else:
+        IDNum = action
         display.scroll(ID[IDNum], delay=50)
-
-    elif accelerometer.get_x() > 2010:  # starts the sending function and animation
-        display.scroll(ID[IDNum], delay=50)
-        sending(ID[IDNum], selfID, Image.HEART)
-
     message = radio.receive()
     if message != None:
         message = message.split()
