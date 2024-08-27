@@ -36,7 +36,7 @@ while True:
     if action == 'back':
         display.scroll("YOU ARE " + selfID, delay=50)
     elif action == 'confirm':
-        display.show(ID[IDNum], delay=50)
+        display.scroll(ID[IDNum], delay=50)
         #messageNum = chooseMessage(messages)
         #if messageNum == 'back':
         #    continue
