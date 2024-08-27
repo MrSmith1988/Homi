@@ -20,7 +20,7 @@ while not button_a.was_pressed():
     sleep(200)
 
 #choose your name, and remove it from the list
-display.show('WHO ARE YOU?', delay=50)
+display.scroll('WHO ARE YOU?', delay=50)
 display.scroll(ID[0], delay=50)
 button_b.was_pressed()
 selfID = chooseName(ID)
